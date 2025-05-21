@@ -124,8 +124,19 @@ def main():
     
     try:
         # Initialize the configuration manager
-        config_manager = ConfigManager(args.config)
-        logger.info("Configuration loaded successfully")
+        try:
+            config_manager = ConfigManager(args.config)
+            logger.info("Configuration loaded successfully")
+        except FileNotFoundError:
+            # This should not happen now since we create a template, but just in case
+            print(f"Configuration file not found. A template has been created at '{os.path.abspath('config.ini')}'")
+            print("Please edit the configuration file and run the program again.")
+            return 1
+        except ValueError as ve:
+            # Handle missing required configuration
+            print(f"Configuration error: {str(ve)}")
+            print("Please check your configuration file and try again.")
+            return 1
         
         # Initialize the database
         db_path = config_manager.get_database_path()
@@ -136,11 +147,30 @@ def main():
         input_folder = config_manager.get_input_folder()
         transcripts_folder = config_manager.get_transcripts_folder()
         
+        missing_folders = []
+        
         if not os.path.exists(input_folder):
+            missing_folders.append(f"Input folder: {input_folder}")
             logger.warning(f"Input folder does not exist: {input_folder}")
         
         if not os.path.exists(transcripts_folder):
+            missing_folders.append(f"Transcripts folder: {transcripts_folder}")
             logger.warning(f"Transcripts folder does not exist: {transcripts_folder}")
+        
+        if missing_folders:
+            print("The following configured folders don't exist:")
+            for folder in missing_folders:
+                print(f"  - {folder}")
+            create_folders = input("Would you like to create these folders? (y/n): ").lower().strip()
+            if create_folders == 'y':
+                # Create the folders
+                for folder_path in [input_folder, transcripts_folder]:
+                    if not os.path.exists(folder_path):
+                        os.makedirs(folder_path, exist_ok=True)
+                        print(f"Created folder: {folder_path}")
+            else:
+                print("Please create the folders manually and run the program again.")
+                return 1
         
         # Initialize video processor
         video_processor = VideoProcessor(config_manager)

@@ -36,6 +36,7 @@ virtualenv/
 
 # OpenAI API keys and other sensitive configuration
 config.ini
+config.ini.bak
 
 # Log files
 *.log

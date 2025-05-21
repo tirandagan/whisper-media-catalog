@@ -2,6 +2,7 @@ import os
 import configparser
 from dotenv import load_dotenv
 import logging
+import sys
 
 logger = logging.getLogger(__name__)
 
@@ -19,8 +20,44 @@ class ConfigManager:
         # Load environment variables from .env file if it exists
         load_dotenv()
         
+        # Check if config file exists, create template if it doesn't
+        if not os.path.exists(self.config_path):
+            self._create_template_config()
+            logger.warning(f"Created template configuration file at {self.config_path}")
+            logger.warning("Please edit the configuration file and run the program again.")
+            sys.exit(0)
+        
         # Load the configuration
         self.load_config()
+        
+        # Verify that required values are set
+        self._check_required_values()
+    
+    def _create_template_config(self):
+        """Create a template configuration file"""
+        # Create default sections and values
+        self.config['secrets'] = {
+            'openai_api_key': 'your_openai_api_key_here'
+        }
+        self.config['folders'] = {
+            'input': '/path/to/your/videos/',
+            'database': '/path/to/your/database/',
+            'transcripts': '/path/to/your/transcripts/'
+        }
+        self.config['database'] = {
+            'filename': 'video_library.db'
+        }
+        self.config['whisper'] = {
+            'model_size': 'base',
+            'language': 'en'
+        }
+        
+        # Create parent directories if needed
+        os.makedirs(os.path.dirname(self.config_path), exist_ok=True)
+        
+        # Write to file
+        with open(self.config_path, 'w') as configfile:
+            self.config.write(configfile)
     
     def load_config(self):
         """Load configuration from INI file"""
@@ -44,6 +81,8 @@ class ConfigManager:
         """Override config with environment variables"""
         # Load API keys from environment variables if available
         if os.environ.get('OPENAI_API_KEY'):
+            if not self.config.has_section('secrets'):
+                self.config.add_section('secrets')
             self.config.set('secrets', 'openai_api_key', os.environ.get('OPENAI_API_KEY'))
     
     def _validate_config(self):
@@ -62,6 +101,23 @@ class ConfigManager:
             if not self.config.has_option('folders', folder):
                 logger.error(f"Missing required folder config: {folder}")
                 raise ValueError(f"Missing required folder config: {folder}")
+    
+    def _check_required_values(self):
+        """Check if required values are properly set or are still at default values"""
+        # Check OpenAI API key
+        api_key = self.get_openai_api_key()
+        if not api_key or api_key == 'your_openai_api_key_here':
+            logger.error("OpenAI API key not configured in config.ini")
+            print("ERROR: Please set your OpenAI API key in config.ini or as an environment variable OPENAI_API_KEY")
+            sys.exit(1)
+        
+        # Check if folder paths are still default values
+        for folder in ['input', 'database', 'transcripts']:
+            path = self.config.get('folders', folder)
+            if path.startswith('/path/to/your/'):
+                logger.error(f"Folder path not configured: {folder}")
+                print(f"ERROR: Please set your {folder} folder path in config.ini")
+                sys.exit(1)
     
     def _create_folders(self):
         """Create the necessary folders if they don't exist"""
