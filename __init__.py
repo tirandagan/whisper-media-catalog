@@ -1,11 +1,41 @@
 """
-Video Library - A tool for transcribing and organizing video files
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║   Video Library Transcription & Management System                              ║
+║                                                                                ║
+║   Created by: Tiran Dagan                                                      ║
+║   Copyright © 2023-2025 Tiran Dagan. All rights reserved.                      ║
+║                                                                                ║
+║   Root package initialization module for the application. This file provides   ║
+║   version information and application metadata.                                ║
+║                                                                                ║
+║   Repository: https://github.com/tirandagan/whisper-media-catalog              ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
 """
 
+# Application version
+__version__ = '1.0.0'
+
+# Application information
+__app_name__ = 'Video Library Transcription & Management System'
+__author__ = 'Tiran Dagan'
+__license__ = 'MIT'
+__copyright__ = 'Copyright © 2023-2025 Tiran Dagan. All rights reserved.'
+
+# Import required libraries
 import sys
-import logging
-import colorlog
 import os
+
+# Add the parent directory to the path to allow proper module imports
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+# Import main components
+from lib.database.models import Video, Transcription
+from lib.config.config_manager import ConfigManager
+from lib.video_processor import VideoProcessor
+from lib.transcriber.transcriber import VideoTranscriber
+from lib.utils import export_database_to_excel
 
 def setup_logger():
     """Set up colorized logging for the entire package"""

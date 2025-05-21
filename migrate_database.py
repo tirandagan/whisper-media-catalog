@@ -1,8 +1,19 @@
 #!/usr/bin/env python3
 """
-Database Migration Script for Video Library
-
-This script ensures that the database schema is up to date by adding any missing columns.
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║   Video Library Transcription & Management System                              ║
+║                                                                                ║
+║   Created by: Tiran Dagan                                                      ║
+║   Copyright © 2023-2025 Tiran Dagan. All rights reserved.                      ║
+║                                                                                ║
+║   Database migration script that updates the SQLite database schema to the     ║
+║   latest version. This script handles the creation of new tables, addition     ║
+║   of columns, and data migrations between schema versions.                     ║
+║                                                                                ║
+║   Repository: https://github.com/tirandagan/whisper-media-catalog              ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
 """
 
 import os

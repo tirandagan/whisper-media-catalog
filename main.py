@@ -1,9 +1,19 @@
 #!/usr/bin/env python3
 """
-Video Library - A tool for transcribing and organizing video files
-
-This script scans a specified folder for video files, extracts their metadata,
-transcribes them using OpenAI Whisper, and organizes the information in a SQLite database.
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║   Video Library Transcription & Management System                              ║
+║                                                                                ║
+║   Created by: Tiran Dagan                                                      ║
+║   Copyright © 2023-2025 Tiran Dagan. All rights reserved.                      ║
+║                                                                                ║
+║   Main script that serves as the entry point for the application. This file    ║
+║   handles command-line arguments, initializes the application components,      ║
+║   and orchestrates the video processing and transcription workflow.            ║
+║                                                                                ║
+║   Repository: https://github.com/tirandagan/whisper-media-catalog              ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
 """
 
 import os

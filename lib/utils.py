@@ -1,3 +1,20 @@
+"""
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║   Video Library Transcription & Management System                              ║
+║                                                                                ║
+║   Created by: Tiran Dagan                                                      ║
+║   Copyright © 2023-2025 Tiran Dagan. All rights reserved.                      ║
+║                                                                                ║
+║   Utility functions for the application, primarily focused on data export      ║
+║   and report generation. This module handles the creation of Excel reports     ║
+║   with multiple sheets, formatting, and data presentation.                     ║
+║                                                                                ║
+║   Repository: https://github.com/tirandagan/whisper-media-catalog              ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+"""
+
 import os
 import logging
 import pandas as pd

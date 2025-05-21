@@ -1,3 +1,20 @@
+"""
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║   Video Library Transcription & Management System                              ║
+║                                                                                ║
+║   Created by: Tiran Dagan                                                      ║
+║   Copyright © 2023-2025 Tiran Dagan. All rights reserved.                      ║
+║                                                                                ║
+║   Video processing module that handles scanning for video files, extracting    ║
+║   metadata using FFmpeg, and managing video status. This module is             ║
+║   responsible for identifying new videos and preparing them for transcription. ║
+║                                                                                ║
+║   Repository: https://github.com/tirandagan/whisper-media-catalog              ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+"""
+
 import os
 import json
 import subprocess

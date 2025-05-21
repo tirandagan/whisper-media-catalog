@@ -1,3 +1,20 @@
+"""
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║   Video Library Transcription & Management System                              ║
+║                                                                                ║
+║   Created by: Tiran Dagan                                                      ║
+║   Copyright © 2023-2025 Tiran Dagan. All rights reserved.                      ║
+║                                                                                ║
+║   Configuration management module that handles loading and validating the      ║
+║   application's settings. This module creates a template config if none        ║
+║   exists and ensures all required settings are properly configured.            ║
+║                                                                                ║
+║   Repository: https://github.com/tirandagan/whisper-media-catalog              ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+"""
+
 import os
 import configparser
 from dotenv import load_dotenv

@@ -1,3 +1,20 @@
+"""
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║   Video Library Transcription & Management System                              ║
+║                                                                                ║
+║   Created by: Tiran Dagan                                                      ║
+║   Copyright © 2023-2025 Tiran Dagan. All rights reserved.                      ║
+║                                                                                ║
+║   Transcription module that uses OpenAI Whisper to transcribe video files.     ║
+║   This module also handles generating titles, summaries, and keywords using    ║
+║   OpenAI GPT-4o, and creating formatted markdown transcripts.                  ║
+║                                                                                ║
+║   Repository: https://github.com/tirandagan/whisper-media-catalog              ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+"""
+
 import os
 import whisper
 import logging
