@@ -1,10 +1,33 @@
-# Video Library
+# Video Library Transcription & Management System
 
-A Python application for transcribing and organizing video files using OpenAI Whisper with SQLite storage.
+A comprehensive Python application for transcribing, summarizing, and organizing video files using OpenAI Whisper and GPT-4o with SQLite storage.
 
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![OpenAI](https://img.shields.io/badge/AI-OpenAI%20Whisper-orange.svg)
+
+## Overview
+
+Video Library Transcription & Management System is a comprehensive solution that transforms your video collection into a fully searchable, well-organized media database with AI-powered insights.
+
+The application leverages several advanced AI technologies to process your videos:
+
+- **OpenAI Whisper** provides state-of-the-art speech recognition to accurately transcribe audio from videos in multiple languages
+- **GPT-4o** analyzes the transcripts to generate meaningful titles that capture the essence of each video
+- **AI-Powered Summarization** creates concise summaries of video content, making it easy to understand the main points without watching the entire video
+- **Intelligent Keyword Generation** extracts relevant topics and concepts while maintaining a controlled vocabulary by checking for existing keywords before creating new ones
+- **Special Entity Preservation** ensures company names and abbreviations maintain proper casing (like AT&T, T-Mobile, IBM)
+
+The entire process is automated — simply point the application at your video folder, and it will:
+
+1. Scan for new video files and extract metadata (resolution, duration, codec)
+2. Transcribe the audio using OpenAI's Whisper model
+3. Generate titles, summaries, and keywords using GPT-4o
+4. Create formatted markdown transcripts for easy reading
+5. Store everything in a SQLite database with proper relationships
+6. Export organized Excel reports with color-coding and filtering capabilities
+
+This enables you to quickly search, filter, and discover content across your entire video collection without manually watching hours of footage.
 
 ## Features
 
@@ -90,7 +113,7 @@ database = /path/to/your/database/
 transcripts = /path/to/your/transcripts/
 
 [database]
-filename = video_library.db
+filename = vlts_database.db
 
 [whisper]
 model_size = base
@@ -113,7 +136,7 @@ cd whisper-media-catalog
 pip install -r requirements.txt
 
 # Edit config.ini with your OpenAI API key and folders
-# Then run
+# Then run the Video Library Transcription & Management System
 python main.py --verbose
 ```
 
@@ -160,7 +183,7 @@ python main.py --verbose
 
 ## Database Schema
 
-The application uses a SQLite database with the following structure:
+The Video Library Transcription & Management System uses a SQLite database with the following structure:
 
 - `videos`: Stores video file information and technical metadata
   - Tracks file status (New, Transcribed, Missing, Error Transcribing)
@@ -203,7 +226,7 @@ To update an existing database to the latest schema:
 python migrate_database.py
 ```
 
-This ensures all tables and columns are properly created or updated.
+This ensures all tables and columns are properly created or updated for the Video Library Transcription & Management System.
 
 ## License
 
