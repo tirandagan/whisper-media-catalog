@@ -1,0 +1,15 @@
+*.pyc
+__pycache__/
+*.db
+*.sqlite
+*.sqlite3
+*.xlsx
+*.log
+./venv/
+.env
+.git/
+.gitignore
+.cursorignore
+.zipignore
+*.zip
+config.ini

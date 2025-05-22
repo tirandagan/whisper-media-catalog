@@ -1,5 +1,4 @@
 openai-whisper==20231117
-moviepy==1.0.3
 ffmpeg-python==0.2.0
 SQLAlchemy==2.0.27
 configparser==5.3.0
